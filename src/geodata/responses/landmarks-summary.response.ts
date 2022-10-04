@@ -24,6 +24,7 @@ export class LandmarksSummaryResponse {
     parks: Landmark[],
     communityCenters: Landmark[],
     libraries: Landmark[],
+    childcares: Landmark[],
   ) {
     this.totalParks = parks.length;
     this.parks = parks;
@@ -33,5 +34,7 @@ export class LandmarksSummaryResponse {
 
     this.totalLibraries = libraries.length;
     this.libraries = libraries;
+    this.totalLibraries = childcares.length;
+    this.libraries = childcares;
   }
 }
