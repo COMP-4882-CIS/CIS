@@ -20,7 +20,7 @@ export class PopulationStat {
 
   @ApiModelProperty({ required: false })
   @JsonProperty({
-    name: CensusVariable.TOTAL_UNDER_18_POP,
+    name: CensusVariable.AGE_UNDER_5,
     required: false,
     beforeDeserialize: (p) => {
       if (p === 'NAN: null') {
@@ -30,11 +30,11 @@ export class PopulationStat {
       return p;
     },
   })
-  populationUnder18: number;
+  ageUnder5: number;
 
   @ApiModelProperty({ required: false })
   @JsonProperty({
-    name: CensusVariable.TOTAL_UNDER_18_MALE_POP,
+    name: CensusVariable.AGE_5T9,
     required: false,
     beforeDeserialize: (p) => {
       if (p === 'NAN: null') {
@@ -44,11 +44,11 @@ export class PopulationStat {
       return p;
     },
   })
-  populationUnder18Male: number;
+  age5To9: number;
 
   @ApiModelProperty({ required: false })
   @JsonProperty({
-    name: CensusVariable.TOTAL_UNDER_18_FEMALE_POP,
+    name: CensusVariable.AGE_10T14,
     required: false,
     beforeDeserialize: (p) => {
       if (p === 'NAN: null') {
@@ -58,7 +58,21 @@ export class PopulationStat {
       return p;
     },
   })
-  populationUnder18Female: number;
+  age10To14: number;
+
+  @ApiModelProperty({ required: false })
+  @JsonProperty({
+    name: CensusVariable.AGE_15T19,
+    required: false,
+    beforeDeserialize: (p) => {
+      if (p === 'NAN: null') {
+        return -1;
+      }
+
+      return p;
+    },
+  })
+  age15To19: number;
 
   @ApiModelProperty({ required: false })
   @JsonProperty({
@@ -118,9 +132,10 @@ export class PopulationStat {
     const newStat = new PopulationStat();
 
     if (dataType === 'gender') {
-      newStat.populationUnder18 = 0;
-      newStat.populationUnder18Female = 0;
-      newStat.populationUnder18Male = 0;
+      newStat.ageUnder5 = 0;
+      newStat.age5To9 = 0;
+      newStat.age10To14 = 0;
+      newStat.age15To19 = 0;
     } else if (dataType === 'poverty') {
       newStat.populationInPovertyUnder6 = 0;
       newStat.populationInPoverty6To11 = 0;
