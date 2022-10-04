@@ -11,13 +11,16 @@ export class TractBreakdownRequest {
   totalPopulation: number;
 
   @ApiModelProperty({ required: true })
-  populationUnder18: number;
+  ageUnder5: number;
 
   @ApiModelProperty({ required: true })
-  populationUnder18Male: number;
+  age5To9: number;
 
   @ApiModelProperty({ required: true })
-  populationUnder18Female: number;
+  age10To14: number;
+
+  @ApiModelProperty({ required: true })
+  age15To19: number;
 
   @ApiModelProperty({ required: true })
   populationInPovertyUnder6: number;

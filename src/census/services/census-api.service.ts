@@ -30,7 +30,7 @@ export class CensusAPIService {
     vintage = 2020,
     tract: string | number = '*',
     zcta: string | number = '*',
-    type = 'under18',
+    type = 'under19',
   ) {
     let byTract = true;
     let geoObject: any = {
@@ -103,9 +103,10 @@ export class CensusAPIService {
       [
         'NAME',
         CensusVariable.TOTAL_POP,
-        CensusVariable.TOTAL_UNDER_18_POP,
-        CensusVariable.TOTAL_UNDER_18_MALE_POP,
-        CensusVariable.TOTAL_UNDER_18_FEMALE_POP,
+        CensusVariable.AGE_UNDER_5,
+        CensusVariable.AGE_5T9,
+        CensusVariable.AGE_10T14,
+        CensusVariable.AGE_15T19,
       ],
       2020,
       tract,
@@ -122,10 +123,10 @@ export class CensusAPIService {
 
         return data[0];
       }),
-      map((data) => {
-        data.stats.sort((a, b) => b.populationUnder18 - a.populationUnder18);
-        return data;
-      }),
+      // map((data) => {
+      //   data.stats.sort((a, b) => b.populationUnder18 - a.populationUnder18);
+      //   return data;
+      // }),
     );
   }
 
@@ -149,10 +150,10 @@ export class CensusAPIService {
    * @param tract
    * @param zipCode
    */
-  under18Request(tract: string | number = '*', zipCode: string | number = '*') {
+  under5Request(tract: string | number = '*', zipCode: string | number = '*') {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.TOTAL_UNDER_18_POP],
+      ['NAME', CensusVariable.AGE_UNDER_5],
       2020,
       tract,
       zipCode,
@@ -164,17 +165,17 @@ export class CensusAPIService {
    * @param tract - The US Census Tract Number
    * @param zipCode - ZIP Code
    */
-  under18MaleRequest(
+  ageFiveTo9Request(
     tract: string | number = '*',
     zipCode: string | number = '*',
   ) {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.TOTAL_UNDER_18_MALE_POP],
+      ['NAME', CensusVariable.AGE_5T9],
       2020,
       tract,
       zipCode,
-      'under18-male',
+      'five-nine',
     );
   }
 
@@ -183,17 +184,31 @@ export class CensusAPIService {
    * @param tract - The US Census Tract Number
    * @param zipCode - ZIP Code
    */
-  under18FemaleRequest(
+  ageTenTo14Request(
     tract: string | number = '*',
     zipCode: string | number = '*',
   ) {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.TOTAL_UNDER_18_FEMALE_POP],
+      ['NAME', CensusVariable.AGE_10T14],
       2020,
       tract,
       zipCode,
-      'under18-female',
+      'ten-fourteen',
+    );
+  }
+
+  fifteenTo19Request(
+    tract: string | number = '*',
+    zipCode: string | number = '*',
+  ) {
+    return this.buildRequest(
+      ['acs', 'acs5', 'subject'],
+      ['NAME', CensusVariable.AGE_15T19],
+      2020,
+      tract,
+      zipCode,
+      'fifteen-nineteen',
     );
   }
 

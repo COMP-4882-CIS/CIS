@@ -37,37 +37,48 @@ export class CensusController {
     return this.censusAPIService.totalRequest(tract, zipCode);
   }
 
-  @Get('under18')
+  @Get('Under5')
   @ApiQuery({ name: 'tract', type: String, required: false })
   @ApiQuery({ name: 'zipCode', type: String, required: false })
   @ApiResponse({ type: PopulationStatResponse })
-  under18Request(
+  under5Request(
     @Query('tract') tract: string | number = '*',
     @Query('zipCode') zipCode: string | number = '*',
   ) {
-    return this.censusAPIService.under18Request(tract, zipCode);
+    return this.censusAPIService.under5Request(tract, zipCode);
   }
 
-  @Get('under18Male')
+  @Get('FiveToNine')
   @ApiQuery({ name: 'tract', type: String, required: false })
   @ApiQuery({ name: 'zipCode', type: String, required: false })
   @ApiResponse({ type: PopulationStatResponse })
-  under18MaleRequest(
+  ageFiveTo9Request(
     @Query('tract') tract: string | number = '*',
     @Query('zipCode') zipCode: string | number = '*',
   ) {
-    return this.censusAPIService.under18MaleRequest(tract, zipCode);
+    return this.censusAPIService.ageFiveTo9Request(tract, zipCode);
   }
 
-  @Get('under18Female')
+  @Get('TenTo14')
   @ApiQuery({ name: 'tract', type: String, required: false })
   @ApiQuery({ name: 'zipCode', type: String, required: false })
   @ApiResponse({ type: PopulationStatResponse })
-  under18FemRequest(
+  ageTenTo14Request(
     @Query('tract') tract: string | number = '*',
     @Query('zipCode') zipCode: string | number = '*',
   ) {
-    return this.censusAPIService.under18FemaleRequest(tract, zipCode);
+    return this.censusAPIService.ageTenTo14Request(tract, zipCode);
+  }
+
+  @Get('FifteenTo19')
+  @ApiQuery({ name: 'tract', type: String, required: false })
+  @ApiQuery({ name: 'zipCode', type: String, required: false })
+  @ApiResponse({ type: PopulationStatResponse })
+  fifteenTo19Request(
+    @Query('tract') tract: string | number = '*',
+    @Query('zipCode') zipCode: string | number = '*',
+  ) {
+    return this.censusAPIService.fifteenTo19Request(tract, zipCode);
   }
 
   @Get('underPovertyLevel')
