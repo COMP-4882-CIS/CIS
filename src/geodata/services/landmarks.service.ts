@@ -8,6 +8,7 @@ export class LandmarksService {
   private rawParkData: FeatureCollection = require('../data/parks.json');
   private rawLibraryData: FeatureCollection = require('../data/libraries.json');
   private rawCommunityCenterData: FeatureCollection = require('../data/centers.json');
+  private rawChildCareData: FeatureCollection = require('../data/childcare.json');
 
   private readonly allLandmarks: Landmark[];
 
@@ -16,6 +17,7 @@ export class LandmarksService {
       ...this.convertParks(),
       ...this.convertLibraries(),
       ...this.convertCommunityCenters(),
+      ...this.convertChildCare(),
     ];
   }
 
@@ -46,6 +48,18 @@ export class LandmarksService {
   public getCommunityCenters(inZipCode?: string): Landmark[] {
     return this.allLandmarks
       .filter((landmark) => landmark.type === LandmarkType.COMMUNITY_CENTER)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getChildCare(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CHILDCARE)
       .filter((landmark) => {
         if (inZipCode !== undefined && inZipCode.length > 0) {
           return landmark.zipCode === inZipCode;
@@ -116,6 +130,28 @@ export class LandmarksService {
             LandmarkType.COMMUNITY_CENTER,
             feature.properties['community_'],
             feature.properties['zip'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertChildCare(): Landmark[] {
+    return this.rawChildCareData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Address') &&
+          feature.properties.hasOwnProperty('Zip') &&
+          !!feature.properties['Address'] &&
+          !!feature.properties['Zip']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CHILDCARE,
+            feature.properties['Address'],
+            feature.properties['Zip'],
             feature.geometry,
           ),
       );

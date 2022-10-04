@@ -18,8 +18,9 @@ export class LandmarksController {
     const parks = this.landmarksService.getParks(zipCode);
     const libraries = this.landmarksService.getLibraries(zipCode);
     const communityCenters = this.landmarksService.getCommunityCenters(zipCode);
+    const childcares = this.landmarksService.getChildCare(zipCode);
 
-    return new LandmarksSummaryResponse(parks, communityCenters, libraries);
+    return new LandmarksSummaryResponse(parks, communityCenters, libraries, childcares);
   }
 
   @Get('parks')
@@ -42,6 +43,14 @@ export class LandmarksController {
   @ApiQuery({ type: String, required: false, name: 'zipCode' })
   getCommunityCenters(@Query('zipCode') zipCode?: string): LandmarksResponse {
     const centers = this.landmarksService.getCommunityCenters(zipCode);
+
+    return new LandmarksResponse(centers);
+  }
+
+  @Get('childcare')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getChildCare(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const centers = this.landmarksService.getChildCare(zipCode);
 
     return new LandmarksResponse(centers);
   }
