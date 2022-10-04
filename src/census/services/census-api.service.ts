@@ -17,7 +17,7 @@ export class CensusAPIService {
 
   /**
    * Build a CitySDK/Census request
-   * @param sourcePath - Values like 'acs', 'acs5', 'subject' (which builds a URL like /acs/acs5/subject)
+   * @param sourcePath - Values like 'acs', 'acs1', 'subject' (which builds a URL like /acs/acs1/subject)
    * @param values - Values like 'NAME', 'S0101_C06_022E' (which is apart of the get list)
    * @param vintage - Optionally specify a vintage, defaults to 2018
    * @param tract - Tract code
@@ -27,7 +27,7 @@ export class CensusAPIService {
   buildRequest(
     sourcePath: string[],
     values: string[],
-    vintage = 2019,
+    vintage = 2020,
     tract: string | number = '*',
     zcta: string | number = '*',
     type = 'under18',
@@ -107,7 +107,7 @@ export class CensusAPIService {
         CensusVariable.TOTAL_UNDER_18_MALE_POP,
         CensusVariable.TOTAL_UNDER_18_FEMALE_POP,
       ],
-      2019,
+      2020,
       tract,
       zipCode,
       'breakdown',
@@ -138,7 +138,7 @@ export class CensusAPIService {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
       ['NAME', CensusVariable.TOTAL_POP],
-      2019,
+      2020,
       tract,
       zipCode,
     );
@@ -153,7 +153,7 @@ export class CensusAPIService {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
       ['NAME', CensusVariable.TOTAL_UNDER_18_POP],
-      2019,
+      2020,
       tract,
       zipCode,
     );
@@ -171,7 +171,7 @@ export class CensusAPIService {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
       ['NAME', CensusVariable.TOTAL_UNDER_18_MALE_POP],
-      2019,
+      2020,
       tract,
       zipCode,
       'under18-male',
@@ -190,7 +190,7 @@ export class CensusAPIService {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
       ['NAME', CensusVariable.TOTAL_UNDER_18_FEMALE_POP],
-      2019,
+      2020,
       tract,
       zipCode,
       'under18-female',
