@@ -18,9 +18,10 @@ export class LandmarksController {
     const parks = this.landmarksService.getParks(zipCode);
     const libraries = this.landmarksService.getLibraries(zipCode);
     const communityCenters = this.landmarksService.getCommunityCenters(zipCode);
-    const childcares = this.landmarksService.getChildCare(zipCode);
+    const ccf = this.landmarksService.getChildCareF(zipCode);
+    const ccc = this.landmarksService.getChildCareC(zipCode);
 
-    return new LandmarksSummaryResponse(parks, communityCenters, libraries, childcares);
+    return new LandmarksSummaryResponse(parks, communityCenters, libraries, ccf, ccc);
   }
 
   @Get('parks')
@@ -47,11 +48,19 @@ export class LandmarksController {
     return new LandmarksResponse(centers);
   }
 
-  @Get('childcare')
+  @Get('cc_family')
   @ApiQuery({ type: String, required: false, name: 'zipCode' })
-  getChildCare(@Query('zipCode') zipCode?: string): LandmarksResponse {
-    const centers = this.landmarksService.getChildCare(zipCode);
+  getChildCareF(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const ccf = this.landmarksService.getChildCareF(zipCode);
 
-    return new LandmarksResponse(centers);
+    return new LandmarksResponse(ccf);
+  }
+
+  @Get('cc_center')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getChildCareC(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const ccc = this.landmarksService.getChildCareC(zipCode);
+
+    return new LandmarksResponse(ccc);
   }
 }

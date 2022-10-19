@@ -2,5 +2,6 @@ export enum LandmarkType {
   LIBRARY = 'library',
   PARK = 'park',
   COMMUNITY_CENTER = 'community_center',
-  CHILDCARE = 'childcare',
+  CCF = 'cc_family',
+  CCC = 'cc_centers',
 }

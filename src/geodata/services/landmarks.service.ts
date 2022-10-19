@@ -8,7 +8,8 @@ export class LandmarksService {
   private rawParkData: FeatureCollection = require('../data/parks.json');
   private rawLibraryData: FeatureCollection = require('../data/libraries.json');
   private rawCommunityCenterData: FeatureCollection = require('../data/centers.json');
-  private rawChildCareData: FeatureCollection = require('../data/childcare.json');
+  private rawCCFData: FeatureCollection = require('../data/cs_family.json');
+  private rawCCCData: FeatureCollection = require('../data/cs_center.json');
 
   private readonly allLandmarks: Landmark[];
 
@@ -17,7 +18,8 @@ export class LandmarksService {
       ...this.convertParks(),
       ...this.convertLibraries(),
       ...this.convertCommunityCenters(),
-      ...this.convertChildCare(),
+      ...this.convertChildCareF(),
+      ...this.convertChildCareC(),
     ];
   }
 
@@ -57,9 +59,21 @@ export class LandmarksService {
       });
   }
 
-  public getChildCare(inZipCode?: string): Landmark[] {
+  public getChildCareF(inZipCode?: string): Landmark[] {
     return this.allLandmarks
-      .filter((landmark) => landmark.type === LandmarkType.CHILDCARE)
+      .filter((landmark) => landmark.type === LandmarkType.CCF)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getChildCareC(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CCC)
       .filter((landmark) => {
         if (inZipCode !== undefined && inZipCode.length > 0) {
           return landmark.zipCode === inZipCode;
@@ -135,8 +149,8 @@ export class LandmarksService {
       );
   }
 
-  private convertChildCare(): Landmark[] {
-    return this.rawChildCareData.features
+  private convertChildCareF(): Landmark[] {
+    return this.rawCCFData.features
       .filter((feature) => {
         return (
           !!feature.properties &&
@@ -149,7 +163,29 @@ export class LandmarksService {
       .map(
         (feature) =>
           new Landmark(
-            LandmarkType.CHILDCARE,
+            LandmarkType.CCF,
+            feature.properties['Address'],
+            feature.properties['Zip'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertChildCareC(): Landmark[] {
+    return this.rawCCCData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Address') &&
+          feature.properties.hasOwnProperty('Zip') &&
+          !!feature.properties['Address'] &&
+          !!feature.properties['Zip']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CCC,
             feature.properties['Address'],
             feature.properties['Zip'],
             feature.geometry,
