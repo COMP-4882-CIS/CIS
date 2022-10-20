@@ -10,6 +10,7 @@ export class LandmarksService {
   private rawCommunityCenterData: FeatureCollection = require('../data/centers.json');
   private rawCCFData: FeatureCollection = require('../data/cs_family.json');
   private rawCCCData: FeatureCollection = require('../data/cs_center.json');
+  private rawCrimesData: FeatureCollection = require('../data/firstcrimedata.json');
 
   private readonly allLandmarks: Landmark[];
 
@@ -20,6 +21,7 @@ export class LandmarksService {
       ...this.convertCommunityCenters(),
       ...this.convertChildCareF(),
       ...this.convertChildCareC(),
+      ...this.convertCrimes(),
     ];
   }
 
@@ -74,6 +76,18 @@ export class LandmarksService {
   public getChildCareC(inZipCode?: string): Landmark[] {
     return this.allLandmarks
       .filter((landmark) => landmark.type === LandmarkType.CCC)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCrimes(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CRIMES)
       .filter((landmark) => {
         if (inZipCode !== undefined && inZipCode.length > 0) {
           return landmark.zipCode === inZipCode;
@@ -188,6 +202,28 @@ export class LandmarksService {
             LandmarkType.CCC,
             feature.properties['Address'],
             feature.properties['Zip'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCrimes(): Landmark[] {
+    return this.rawCrimesData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CRIMES,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
             feature.geometry,
           ),
       );

@@ -20,8 +20,16 @@ export class LandmarksController {
     const communityCenters = this.landmarksService.getCommunityCenters(zipCode);
     const ccf = this.landmarksService.getChildCareF(zipCode);
     const ccc = this.landmarksService.getChildCareC(zipCode);
+    const crimes = this.landmarksService.getCrimes(zipCode);
 
-    return new LandmarksSummaryResponse(parks, communityCenters, libraries, ccf, ccc);
+    return new LandmarksSummaryResponse(
+      parks,
+      communityCenters,
+      libraries,
+      ccf,
+      ccc,
+      crimes,
+    );
   }
 
   @Get('parks')
@@ -62,5 +70,13 @@ export class LandmarksController {
     const ccc = this.landmarksService.getChildCareC(zipCode);
 
     return new LandmarksResponse(ccc);
+  }
+
+  @Get('crimes')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCrimes(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const crimes = this.landmarksService.getCrimes(zipCode);
+
+    return new LandmarksResponse(crimes);
   }
 }

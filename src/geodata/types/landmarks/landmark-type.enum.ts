@@ -4,4 +4,5 @@ export enum LandmarkType {
   COMMUNITY_CENTER = 'community_center',
   CCF = 'cc_family',
   CCC = 'cc_centers',
+  CRIMES = 'crimes',
 }
