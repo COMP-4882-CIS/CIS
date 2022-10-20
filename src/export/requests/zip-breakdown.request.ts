@@ -36,4 +36,28 @@ export class ZipBreakdownRequest {
 
   @ApiModelProperty({ required: true })
   communityCenterCount: number;
+
+  @ApiModelProperty({ required: true })
+  CCCCount: number;
+
+  @ApiModelProperty({ required: true })
+  CCFCount: number;
+
+  @ApiModelProperty({ required: true })
+  CACount: number;
+
+  @ApiModelProperty({ required: true })
+  CBRCount: number;
+
+  @ApiModelProperty({ required: true })
+  CDCount: number;
+
+  @ApiModelProperty({ required: true })
+  CTCount: number;
+
+  @ApiModelProperty({ required: true })
+  COCount: number;
+
+  @ApiModelProperty({ required: true })
+  CWCount: number;
 }
