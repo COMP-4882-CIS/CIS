@@ -44,5 +44,20 @@ export class ZipBreakdownRequest {
   CCFCount: number;
 
   @ApiModelProperty({ required: true })
-  CrimesCount: number;
+  CACount: number;
+
+  @ApiModelProperty({ required: true })
+  CBRCount: number;
+
+  @ApiModelProperty({ required: true })
+  CDCount: number;
+
+  @ApiModelProperty({ required: true })
+  CTCount: number;
+
+  @ApiModelProperty({ required: true })
+  COCount: number;
+
+  @ApiModelProperty({ required: true })
+  CWCount: number;
 }

@@ -20,7 +20,12 @@ export class LandmarksController {
     const communityCenters = this.landmarksService.getCommunityCenters(zipCode);
     const ccf = this.landmarksService.getChildCareF(zipCode);
     const ccc = this.landmarksService.getChildCareC(zipCode);
-    const crimes = this.landmarksService.getCrimes(zipCode);
+    const ca = this.landmarksService.getCA(zipCode);
+    const cbr = this.landmarksService.getCBR(zipCode);
+    const cd = this.landmarksService.getCD(zipCode);
+    const ct = this.landmarksService.getCT(zipCode);
+    const co = this.landmarksService.getCO(zipCode);
+    const cw = this.landmarksService.getCW(zipCode);
 
     return new LandmarksSummaryResponse(
       parks,
@@ -28,7 +33,12 @@ export class LandmarksController {
       libraries,
       ccf,
       ccc,
-      crimes,
+      ca,
+      cbr,
+      cd,
+      ct,
+      co,
+      cw,
     );
   }
 
@@ -72,11 +82,51 @@ export class LandmarksController {
     return new LandmarksResponse(ccc);
   }
 
-  @Get('crimes')
+  @Get('cr_assault')
   @ApiQuery({ type: String, required: false, name: 'zipCode' })
-  getCrimes(@Query('zipCode') zipCode?: string): LandmarksResponse {
-    const crimes = this.landmarksService.getCrimes(zipCode);
+  getCA(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const ca = this.landmarksService.getCA(zipCode);
 
-    return new LandmarksResponse(crimes);
+    return new LandmarksResponse(ca);
+  }
+
+  @Get('cr_burgrob')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCBR(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const cbr = this.landmarksService.getCBR(zipCode);
+
+    return new LandmarksResponse(cbr);
+  }
+
+  @Get('cr_drug')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCD(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const cd = this.landmarksService.getCD(zipCode);
+
+    return new LandmarksResponse(cd);
+  }
+
+  @Get('cr_theft')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCT(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const ct = this.landmarksService.getCT(zipCode);
+
+    return new LandmarksResponse(ct);
+  }
+
+  @Get('cr_trafficother')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCO(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const co = this.landmarksService.getCO(zipCode);
+
+    return new LandmarksResponse(co);
+  }
+
+  @Get('cr_weapon')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCW(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const cw = this.landmarksService.getCW(zipCode);
+
+    return new LandmarksResponse(cw);
   }
 }

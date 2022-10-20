@@ -10,7 +10,12 @@ export class LandmarksService {
   private rawCommunityCenterData: FeatureCollection = require('../data/centers.json');
   private rawCCFData: FeatureCollection = require('../data/cs_family.json');
   private rawCCCData: FeatureCollection = require('../data/cs_center.json');
-  private rawCrimesData: FeatureCollection = require('../data/firstcrimedata.json');
+  private rawCAData: FeatureCollection = require('../data/cr_assault.json');
+  private rawCBRData: FeatureCollection = require('../data/cr_burgrob.json');
+  private rawCDData: FeatureCollection = require('../data/cr_drug.json');
+  private rawCTData: FeatureCollection = require('../data/cr_theft.json');
+  private rawCOData: FeatureCollection = require('../data/cr_trafficother.json');
+  private rawCWData: FeatureCollection = require('../data/cr_weapon.json');
 
   private readonly allLandmarks: Landmark[];
 
@@ -21,7 +26,12 @@ export class LandmarksService {
       ...this.convertCommunityCenters(),
       ...this.convertChildCareF(),
       ...this.convertChildCareC(),
-      ...this.convertCrimes(),
+      ...this.convertCA(),
+      ...this.convertCBR(),
+      ...this.convertCD(),
+      ...this.convertCT(),
+      ...this.convertCO(),
+      ...this.convertCW(),
     ];
   }
 
@@ -85,9 +95,69 @@ export class LandmarksService {
       });
   }
 
-  public getCrimes(inZipCode?: string): Landmark[] {
+  public getCA(inZipCode?: string): Landmark[] {
     return this.allLandmarks
-      .filter((landmark) => landmark.type === LandmarkType.CRIMES)
+      .filter((landmark) => landmark.type === LandmarkType.CA)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCBR(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CBR)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCD(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CD)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCT(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CT)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCO(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CO)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+
+        return true;
+      });
+  }
+
+  public getCW(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.CW)
       .filter((landmark) => {
         if (inZipCode !== undefined && inZipCode.length > 0) {
           return landmark.zipCode === inZipCode;
@@ -207,8 +277,8 @@ export class LandmarksService {
       );
   }
 
-  private convertCrimes(): Landmark[] {
-    return this.rawCrimesData.features
+  private convertCA(): Landmark[] {
+    return this.rawCAData.features
       .filter((feature) => {
         return (
           !!feature.properties &&
@@ -221,7 +291,117 @@ export class LandmarksService {
       .map(
         (feature) =>
           new Landmark(
-            LandmarkType.CRIMES,
+            LandmarkType.CA,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCBR(): Landmark[] {
+    return this.rawCBRData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CBR,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCD(): Landmark[] {
+    return this.rawCDData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CD,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCT(): Landmark[] {
+    return this.rawCTData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CT,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCO(): Landmark[] {
+    return this.rawCOData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CO,
+            feature.properties['Block Address'],
+            feature.properties['zipcode'],
+            feature.geometry,
+          ),
+      );
+  }
+
+  private convertCW(): Landmark[] {
+    return this.rawCWData.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Block Address') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['Block Address'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+          new Landmark(
+            LandmarkType.CW,
             feature.properties['Block Address'],
             feature.properties['zipcode'],
             feature.geometry,

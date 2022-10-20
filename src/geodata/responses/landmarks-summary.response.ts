@@ -18,7 +18,22 @@ export class LandmarksSummaryResponse {
   totalCCC: number;
 
   @ApiModelProperty()
-  totalCRIMES: number;
+  totalCA: number;
+
+  @ApiModelProperty()
+  totalCBR: number;
+
+  @ApiModelProperty()
+  totalCD: number;
+
+  @ApiModelProperty()
+  totalCT: number;
+
+  @ApiModelProperty()
+  totalCO: number;
+
+  @ApiModelProperty()
+  totalCW: number;
 
   @ApiModelProperty({ isArray: true, type: Landmark })
   parks: Landmark[];
@@ -36,7 +51,22 @@ export class LandmarksSummaryResponse {
   ccc: Landmark[];
 
   @ApiModelProperty({ isArray: true, type: Landmark })
-  crimes: Landmark[];
+  ca: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  cbr: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  cd: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  ct: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  co: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  cw: Landmark[];
 
   constructor(
     parks: Landmark[],
@@ -44,7 +74,12 @@ export class LandmarksSummaryResponse {
     libraries: Landmark[],
     ccf: Landmark[],
     ccc: Landmark[],
-    crimes: Landmark[],
+    ca: Landmark[],
+    cbr: Landmark[],
+    cd: Landmark[],
+    ct: Landmark[],
+    co: Landmark[],
+    cw: Landmark[],
   ) {
     this.totalParks = parks.length;
     this.parks = parks;
@@ -61,7 +96,22 @@ export class LandmarksSummaryResponse {
     this.totalCCC = ccc.length;
     this.ccc = ccc;
 
-    this.totalCRIMES = crimes.length;
-    this.crimes = crimes;
+    this.totalCA = ca.length;
+    this.ca = ca;
+
+    this.totalCBR = cbr.length;
+    this.cbr = cbr;
+
+    this.totalCD = cd.length;
+    this.cd = cd;
+
+    this.totalCT = ct.length;
+    this.ct = ct;
+
+    this.totalCO = co.length;
+    this.co = co;
+
+    this.totalCW = cw.length;
+    this.cw = cw;
   }
 }
