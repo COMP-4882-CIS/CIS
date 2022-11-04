@@ -38,8 +38,7 @@ export class LandmarksController {
       cd,
       ct,
       co,
-      cw,
-    );
+      cw,);
   }
 
   @Get('parks')
