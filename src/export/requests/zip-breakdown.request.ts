@@ -8,16 +8,13 @@ export class ZipBreakdownRequest {
   totalPopulation: number;
 
   @ApiModelProperty({ required: true })
-  ageUnder5: number;
+  populationUnder18: number;
 
   @ApiModelProperty({ required: true })
-  age5To9: number;
+  populationUnder18Male: number;
 
   @ApiModelProperty({ required: true })
-  age10To14: number;
-
-  @ApiModelProperty({ required: true })
-  age15To19: number;
+  populationUnder18Female: number;
 
   @ApiModelProperty({ required: true })
   populationInPovertyUnder6: number;
@@ -45,19 +42,4 @@ export class ZipBreakdownRequest {
 
   @ApiModelProperty({ required: true })
   CACount: number;
-
-  @ApiModelProperty({ required: true })
-  CBRCount: number;
-
-  @ApiModelProperty({ required: true })
-  CDCount: number;
-
-  @ApiModelProperty({ required: true })
-  CTCount: number;
-
-  @ApiModelProperty({ required: true })
-  COCount: number;
-
-  @ApiModelProperty({ required: true })
-  CWCount: number;
 }

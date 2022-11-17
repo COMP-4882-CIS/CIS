@@ -31,7 +31,7 @@ export class LandmarksSummaryResponse {
 
   @ApiModelProperty()
   totalCO: number;
-
+  
   @ApiModelProperty()
   totalCW: number;
 
@@ -65,8 +65,10 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty({ isArray: true, type: Landmark })
   co: Landmark[];
 
+  
   @ApiModelProperty({ isArray: true, type: Landmark })
   cw: Landmark[];
+
 
   constructor(
     parks: Landmark[],
@@ -89,7 +91,7 @@ export class LandmarksSummaryResponse {
 
     this.totalLibraries = libraries.length;
     this.libraries = libraries;
-
+    
     this.totalCCF = ccf.length;
     this.ccf = ccf;
 
@@ -98,7 +100,7 @@ export class LandmarksSummaryResponse {
 
     this.totalCA = ca.length;
     this.ca = ca;
-
+    
     this.totalCBR = cbr.length;
     this.cbr = cbr;
 

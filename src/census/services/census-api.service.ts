@@ -17,7 +17,7 @@ export class CensusAPIService {
 
   /**
    * Build a CitySDK/Census request
-   * @param sourcePath - Values like 'acs', 'acs1', 'subject' (which builds a URL like /acs/acs1/subject)
+   * @param sourcePath - Values like 'acs', 'acs5', 'subject' (which builds a URL like /acs/acs5/subject)
    * @param values - Values like 'NAME', 'S0101_C06_022E' (which is apart of the get list)
    * @param vintage - Optionally specify a vintage, defaults to 2018
    * @param tract - Tract code
@@ -103,6 +103,10 @@ export class CensusAPIService {
       [
         'NAME',
         CensusVariable.TOTAL_POP,
+        CensusVariable.TOTAL_UNDER_18_POP,
+        CensusVariable.TOTAL_UNDER_18_MALE_POP,
+        CensusVariable.TOTAL_UNDER_18_FEMALE_POP,
+        CensusVariable.TOTAL_POP,
         CensusVariable.AGE_UNDER_5,
         CensusVariable.AGE_5T9,
         CensusVariable.AGE_10T14,
@@ -123,10 +127,10 @@ export class CensusAPIService {
 
         return data[0];
       }),
-      // map((data) => {
-      //   data.stats.sort((a, b) => b.populationUnder18 - a.populationUnder18);
-      //   return data;
-      // }),
+      map((data) => {
+        data.stats.sort((a, b) => b.populationUnder18 - a.populationUnder18);
+        return data;
+      }),
     );
   }
 
@@ -150,10 +154,10 @@ export class CensusAPIService {
    * @param tract
    * @param zipCode
    */
-  under5Request(tract: string | number = '*', zipCode: string | number = '*') {
+  under18Request(tract: string | number = '*', zipCode: string | number = '*') {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.AGE_UNDER_5],
+      ['NAME', CensusVariable.TOTAL_UNDER_18_POP],
       2020,
       tract,
       zipCode,
@@ -165,17 +169,17 @@ export class CensusAPIService {
    * @param tract - The US Census Tract Number
    * @param zipCode - ZIP Code
    */
-  ageFiveTo9Request(
+  under18MaleRequest(
     tract: string | number = '*',
     zipCode: string | number = '*',
   ) {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.AGE_5T9],
+      ['NAME', CensusVariable.TOTAL_UNDER_18_MALE_POP],
       2020,
       tract,
       zipCode,
-      'five-nine',
+      'under18-male',
     );
   }
 
@@ -184,31 +188,17 @@ export class CensusAPIService {
    * @param tract - The US Census Tract Number
    * @param zipCode - ZIP Code
    */
-  ageTenTo14Request(
+  under18FemaleRequest(
     tract: string | number = '*',
     zipCode: string | number = '*',
   ) {
     return this.buildRequest(
       ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.AGE_10T14],
+      ['NAME', CensusVariable.TOTAL_UNDER_18_FEMALE_POP],
       2020,
       tract,
       zipCode,
-      'ten-fourteen',
-    );
-  }
-
-  fifteenTo19Request(
-    tract: string | number = '*',
-    zipCode: string | number = '*',
-  ) {
-    return this.buildRequest(
-      ['acs', 'acs5', 'subject'],
-      ['NAME', CensusVariable.AGE_15T19],
-      2020,
-      tract,
-      zipCode,
-      'fifteen-nineteen',
+      'under18-female',
     );
   }
 
@@ -230,4 +220,71 @@ export class CensusAPIService {
       'under18-poverty-breakdown',
     );
   }
+
+    /**
+   * Request the total population in Shelby county under the age of 18
+   * @param tract
+   * @param zipCode
+   */
+     under5Request(tract: string | number = '*', zipCode: string | number = '*') {
+      return this.buildRequest(
+        ['acs', 'acs5', 'subject'],
+        ['NAME', CensusVariable.AGE_UNDER_5],
+        2020,
+        tract,
+        zipCode,
+      );
+    }
+  
+    /**
+     * Request the population in Shelby county under the age of 18 and also male
+     * @param tract - The US Census Tract Number
+     * @param zipCode - ZIP Code
+     */
+    ageFiveTo9Request(
+      tract: string | number = '*',
+      zipCode: string | number = '*',
+    ) {
+      return this.buildRequest(
+        ['acs', 'acs5', 'subject'],
+        ['NAME', CensusVariable.AGE_5T9],
+        2020,
+        tract,
+        zipCode,
+        'five-nine',
+      );
+    }
+  
+    /**
+     * Request the population in Shelby county under the age of 18 and also female
+     * @param tract - The US Census Tract Number
+     * @param zipCode - ZIP Code
+     */
+    ageTenTo14Request(
+      tract: string | number = '*',
+      zipCode: string | number = '*',
+    ) {
+      return this.buildRequest(
+        ['acs', 'acs5', 'subject'],
+        ['NAME', CensusVariable.AGE_10T14],
+        2020,
+        tract,
+        zipCode,
+        'ten-fourteen',
+      );
+    }
+  
+    fifteenTo19Request(
+      tract: string | number = '*',
+      zipCode: string | number = '*',
+    ) {
+      return this.buildRequest(
+        ['acs', 'acs5', 'subject'],
+        ['NAME', CensusVariable.AGE_15T19],
+        2020,
+        tract,
+        zipCode,
+        'fifteen-nineteen',
+      );
+    }
 }

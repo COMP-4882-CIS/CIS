@@ -20,6 +20,48 @@ export class PopulationStat {
 
   @ApiModelProperty({ required: false })
   @JsonProperty({
+    name: CensusVariable.TOTAL_UNDER_18_POP,
+    required: false,
+    beforeDeserialize: (p) => {
+      if (p === 'NAN: null') {
+        return -1;
+      }
+
+      return p;
+    },
+  })
+  populationUnder18: number;
+
+  @ApiModelProperty({ required: false })
+  @JsonProperty({
+    name: CensusVariable.TOTAL_UNDER_18_MALE_POP,
+    required: false,
+    beforeDeserialize: (p) => {
+      if (p === 'NAN: null') {
+        return -1;
+      }
+
+      return p;
+    },
+  })
+  populationUnder18Male: number;
+
+  @ApiModelProperty({ required: false })
+  @JsonProperty({
+    name: CensusVariable.TOTAL_UNDER_18_FEMALE_POP,
+    required: false,
+    beforeDeserialize: (p) => {
+      if (p === 'NAN: null') {
+        return -1;
+      }
+
+      return p;
+    },
+  })
+  populationUnder18Female: number;
+
+  @ApiModelProperty({ required: false })
+  @JsonProperty({
     name: CensusVariable.AGE_UNDER_5,
     required: false,
     beforeDeserialize: (p) => {
@@ -132,6 +174,9 @@ export class PopulationStat {
     const newStat = new PopulationStat();
 
     if (dataType === 'gender') {
+      newStat.populationUnder18 = 0;
+      newStat.populationUnder18Female = 0;
+      newStat.populationUnder18Male = 0;
       newStat.ageUnder5 = 0;
       newStat.age5To9 = 0;
       newStat.age10To14 = 0;
