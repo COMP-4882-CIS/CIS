@@ -48,7 +48,7 @@ Once the Excel spreadsheet is parsed, the data is cached in `membership.json`.
 
 ### Help 
 
-[Maintenance and Help Guide](https://github.com/COMP-4882-CIS/CIS-FRONTEND/blob/main/Maintenance%20and%20Help%20Guide.pdf)
+[Maintenance and Help Guide](https://github.com/COMP-4882-CIS/CIS/blob/main/Maintenance%20and%20Help%20Guide.pdf)
 
 [Softwware Architecture Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Software-Architecture-Document.pdf)
 
