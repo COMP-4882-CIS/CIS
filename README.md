@@ -1,5 +1,9 @@
-# cis_backend
+# CIS
 Child Impact Statements - NestJS Backend
+
+## Context
+
+The Child Impact Statements Map is a public tool that we believe can aid Shelby County policy makers in answering fundamental questions about how a policy may benefit or harm a child. There is various data within the map that can give more insight on youth and the institutions that shape them in Shelby County.
 
 ## Setup
 
@@ -39,3 +43,13 @@ Note, parsing the Excel spreadsheet in its default form will take a lot of memor
 the data in the Excel spreadsheet to only include the Shelby Country district.
 
 Once the Excel spreadsheet is parsed, the data is cached in `membership.json`.
+
+### Help
+
+### Help 
+
+[Maintenance and Help Guide](https://github.com/COMP-4882-CIS/CIS-FRONTEND/blob/main/Maintenance%20and%20Help%20Guide.pdf)
+
+[Softwware Architecture Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Software-Architecture-Document.pdf)
+
+[Source Code Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Source-Code-Document.pdf)
