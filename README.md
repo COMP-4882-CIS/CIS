@@ -7,9 +7,9 @@ Website: [Child Impact Statements](https://comp-4882-cis.github.io/CIS-FRONTEND/
 The Child Impact Statements Map is a public tool that we believe can aid Shelby County policy makers in answering fundamental questions about how a policy may benefit or harm a child. There is various data within the map that can give more insight on youth and the institutions that shape them in Shelby County.
 
 ## Setup
-
-1. Ensure the npm dependencies are installed: `npm i`.
-2. Create a `.env` file based on the template:
+1. [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+2. Ensure the npm dependencies are installed: `npm i`.
+3. Create a `.env` file based on the template:
 ```text
 CENSUS_API_KEY=123123123123123123123
 NODE_ENV=development
