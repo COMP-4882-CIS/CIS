@@ -48,6 +48,6 @@ Once the Excel spreadsheet is parsed, the data is cached in `membership.json`.
 
 [Maintenance and Help Guide](https://github.com/COMP-4882-CIS/CIS/blob/main/Maintenance-and-Help-Guide.pdf)
 
-[Softwware Architecture Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Software-Architecture-Document.pdf)
+[Software Architecture Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Software-Architecture-Document.pdf)
 
 [Source Code Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Source-Code-Document.pdf)
