@@ -10,4 +10,12 @@ export enum LandmarkType {
   CT = 'ct',
   CO = 'co',
   CW = 'cw',
+  LEAD0= 'lead0',
+  LEAD1= 'lead1',
+  LEAD2= 'lead2',
+  LEAD3= 'lead3',
+  LEAD4= 'lead4',
+  LEAD5= 'lead5',
+  LEAD6= 'lead6',
+
 }

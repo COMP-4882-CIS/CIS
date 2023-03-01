@@ -16,6 +16,14 @@ export class LandmarksService {
   private rawCTData: FeatureCollection = require('../data/cr_theft.json');
   private rawCOData: FeatureCollection = require('../data/cr_trafficother.json');
   private rawCWData: FeatureCollection = require('../data/cr_weapon.json');
+  private rawLEAD0Data: FeatureCollection = require('../data/lead_data0.json');
+  private rawLEAD1Data: FeatureCollection = require('../data/lead_data1.json');
+  private rawLEAD2Data: FeatureCollection = require('../data/lead_data2.json');
+  private rawLEAD3Data: FeatureCollection = require('../data/lead_data3.json');
+  private rawLEAD4Data: FeatureCollection = require('../data/lead_data4.json');
+  private rawLEAD5Data: FeatureCollection = require('../data/lead_data5.json');
+  private rawLEAD6Data: FeatureCollection = require('../data/lead_data6.json');
+
 
   private readonly allLandmarks: Landmark[];
 
@@ -32,6 +40,13 @@ export class LandmarksService {
       ...this.convertCT(),
       ...this.convertCO(),
       ...this.convertCW(),
+      ...this.convertLEAD0(),
+      ...this.convertLEAD1(),
+      ...this.convertLEAD2(),
+      ...this.convertLEAD3(),
+      ...this.convertLEAD4(),
+      ...this.convertLEAD5(),
+      ...this.convertLEAD6(),
     ];
   }
 
@@ -163,6 +178,77 @@ export class LandmarksService {
           return landmark.zipCode === inZipCode;
         }
 
+        return true;
+      });
+  }
+
+  public getLEAD0(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD0)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD1(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD1)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD2(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD2)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD3(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD3)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD4(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD4)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD5(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD5)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+  public getLEAD6(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.LEAD6)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
         return true;
       });
   }
@@ -406,6 +492,155 @@ export class LandmarksService {
             feature.properties['zipcode'],
             feature.geometry,
           ),
+      );
+  }
+
+  private convertLEAD0(): Landmark[] {
+    return this.rawLEAD0Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD0,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+
+  private convertLEAD1(): Landmark[] {
+    return this.rawLEAD1Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD1,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertLEAD2(): Landmark[] {
+    return this.rawLEAD2Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD2,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertLEAD3(): Landmark[] {
+    return this.rawLEAD3Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD3,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertLEAD4(): Landmark[] {
+    return this.rawLEAD4Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.CW,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertLEAD5(): Landmark[] {
+    return this.rawLEAD5Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD5,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertLEAD6(): Landmark[] {
+    return this.rawLEAD6Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('age') &&
+          feature.properties.hasOwnProperty('zipcode') &&
+          !!feature.properties['age'] &&
+          !!feature.properties['zipcode']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.LEAD6,
+          feature.properties['age'],
+          feature.properties['zipcode'],
+          feature.geometry,
+        ),
       );
   }
 }
