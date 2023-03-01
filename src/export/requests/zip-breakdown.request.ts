@@ -42,4 +42,25 @@ export class ZipBreakdownRequest {
 
   @ApiModelProperty({ required: true })
   CACount: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD0Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD1Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD2Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD3Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD4Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD5Count: number;
+
+  @ApiModelProperty({ required: true })
+  LEAD6Count: number;
 }

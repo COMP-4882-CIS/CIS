@@ -46,4 +46,28 @@ export const ZIPBreakdownSchema: {
     column: 'Community Centers in ZIP Code',
     type: 'number',
   },
+  {
+    column: 'Total Lead - Age 1',
+    type: 'number',
+  },
+  {
+    column: 'Total Lead - Age 2',
+    type: 'number',
+  },
+  {
+    column: 'Total Lead - Age 3',
+    type: 'number',
+  },
+  {
+    column: 'Total Lead - Age 4',
+    type: 'number',
+  },
+  {
+    column: 'Total Lead - Age 5',
+    type: 'number',
+  },
+  {
+    column: 'Total Lead - Age 6',
+    type: 'number',
+  },
 ];
