@@ -57,7 +57,6 @@ export class LandmarksSummaryResponse {
   totalLEAD6: number;
 
 
-
   @ApiModelProperty({ isArray: true, type: Landmark })
   parks: Landmark[];
 

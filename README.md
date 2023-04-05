@@ -1,10 +1,15 @@
-# cis_backend
-Child Impact Statements - NestJS Backend
+# CIS
+
+Website: [Child Impact Statements](https://comp-4882-cis.github.io/CIS-FRONTEND/) - NestJS Backend
+
+## Context
+
+The Child Impact Statements Map is a public tool that we believe can aid Shelby County policy makers in answering fundamental questions about how a policy may benefit or harm a child. There is various data within the map that can give more insight on youth and the institutions that shape them in Shelby County.
 
 ## Setup
-
-1. Ensure the npm dependencies are installed: `npm i`.
-2. Create a `.env` file based on the template:
+1. [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+2. Ensure the npm dependencies are installed: `npm i`.
+3. Create a `.env` file based on the template:
 ```text
 CENSUS_API_KEY=123123123123123123123
 NODE_ENV=development
@@ -24,7 +29,7 @@ To build the server, please run `npm run build`. The resulting files will be ava
 
 ## Deploying
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/COMP-4882-Capstone-4/Child-Impact-Statements)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/COMP-4882-CIS/CIS)
 
 
 ## Notes
@@ -39,3 +44,13 @@ Note, parsing the Excel spreadsheet in its default form will take a lot of memor
 the data in the Excel spreadsheet to only include the Shelby Country district.
 
 Once the Excel spreadsheet is parsed, the data is cached in `membership.json`.
+
+### Help
+
+[Maintenance and Help Guide](https://github.com/COMP-4882-CIS/CIS/blob/main/Maintenance-and-Help-Guide.pdf)
+
+[Software Architecture Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Software-Architecture-Document.pdf)
+
+[Source Code Document](https://github.com/COMP-4882-CIS/CIS/blob/main/CIS-Source-Code-Document.pdf)
+
+[User Demonstration Video](https://www.youtube.com/watch?v=kVGI9bi1oKE)

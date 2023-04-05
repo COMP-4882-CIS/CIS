@@ -50,4 +50,5 @@ export const TractBreakdownSchema: {
     column: 'Community Centers in Tract',
     type: 'number',
   },
+
 ];
