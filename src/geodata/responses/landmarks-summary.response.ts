@@ -35,6 +35,29 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty()
   totalCW: number;
 
+  @ApiModelProperty()
+  totalLEAD0: number;
+
+  @ApiModelProperty()
+  totalLEAD1: number;
+
+  @ApiModelProperty()
+  totalLEAD2: number;
+
+  @ApiModelProperty()
+  totalLEAD3: number;
+
+  @ApiModelProperty()
+  totalLEAD4: number;
+
+  @ApiModelProperty()
+  totalLEAD5: number;
+
+  @ApiModelProperty()
+  totalLEAD6: number;
+
+
+
   @ApiModelProperty({ isArray: true, type: Landmark })
   parks: Landmark[];
 
@@ -69,6 +92,21 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty({ isArray: true, type: Landmark })
   cw: Landmark[];
 
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead0: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead1: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead2: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead3: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead4: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead5: Landmark[];
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  lead6: Landmark[];
+
 
   constructor(
     parks: Landmark[],
@@ -82,6 +120,13 @@ export class LandmarksSummaryResponse {
     ct: Landmark[],
     co: Landmark[],
     cw: Landmark[],
+    lead0: Landmark[],
+    lead1: Landmark[],
+    lead2: Landmark[],
+    lead3: Landmark[],
+    lead4: Landmark[],
+    lead5: Landmark[],
+    lead6: Landmark[],
   ) {
     this.totalParks = parks.length;
     this.parks = parks;
@@ -115,5 +160,32 @@ export class LandmarksSummaryResponse {
 
     this.totalCW = cw.length;
     this.cw = cw;
+
+    this.totalLEAD0 = lead0.length;
+    this.lead0 = lead0;
+
+    this.totalLEAD1 = lead1.length;
+    this.lead1 = lead1;
+
+    this.totalLEAD2 = lead2.length;
+    this.lead2 = lead2;
+
+    this.totalLEAD3 = lead3.length;
+    this.lead3 = lead3;
+
+    this.totalLEAD4 = lead4.length;
+    this.lead4 = lead4;
+
+    this.totalLEAD5 = lead5.length;
+    this.lead5 = lead5;
+
+    this.totalLEAD6 = lead6.length;
+    this.lead6 = lead6;
+
+    
+    
+
+    
+
   }
 }

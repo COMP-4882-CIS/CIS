@@ -26,6 +26,13 @@ export class LandmarksController {
     const ct = this.landmarksService.getCT(zipCode);
     const co = this.landmarksService.getCO(zipCode);
     const cw = this.landmarksService.getCW(zipCode);
+    const lead0 = this.landmarksService.getLEAD0(zipCode);
+    const lead1 = this.landmarksService.getLEAD1(zipCode);
+    const lead2 = this.landmarksService.getLEAD2(zipCode);
+    const lead3 = this.landmarksService.getLEAD3(zipCode);
+    const lead4 = this.landmarksService.getLEAD4(zipCode);
+    const lead5 = this.landmarksService.getLEAD5(zipCode);
+    const lead6 = this.landmarksService.getLEAD6(zipCode);
 
     return new LandmarksSummaryResponse(
       parks,
@@ -38,7 +45,14 @@ export class LandmarksController {
       cd,
       ct,
       co,
-      cw,);
+      cw,
+      lead0,
+      lead1,
+      lead2,
+      lead3,
+      lead4,
+      lead5,
+      lead6,);
   }
 
   @Get('parks')
@@ -128,4 +142,57 @@ export class LandmarksController {
 
     return new LandmarksResponse(cw);
   }
+
+  @Get('lead_data0')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD0(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead0 = this.landmarksService.getLEAD0(zipCode);
+
+    return new LandmarksResponse(lead0);
+  }
+  @Get('lead_data1')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD1(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead1 = this.landmarksService.getLEAD1(zipCode);
+
+    return new LandmarksResponse(lead1);
+  }
+  @Get('lead_data2')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD2(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead2 = this.landmarksService.getLEAD2(zipCode);
+
+    return new LandmarksResponse(lead2);
+  }
+  @Get('lead_data3')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD3(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead3 = this.landmarksService.getLEAD3(zipCode);
+
+    return new LandmarksResponse(lead3);
+  }
+  @Get('lead_data4')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD4(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead4 = this.landmarksService.getLEAD4(zipCode);
+
+    return new LandmarksResponse(lead4);
+  }
+  @Get('lead_data5')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD5(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead5 = this.landmarksService.getLEAD5(zipCode);
+
+    return new LandmarksResponse(lead5);
+  }
+  @Get('lead_data6')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getLEAD6(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const lead6 = this.landmarksService.getLEAD6(zipCode);
+
+    return new LandmarksResponse(lead6);
+  }
+
+
+
 }
