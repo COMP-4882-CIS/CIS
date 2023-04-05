@@ -1,2 +1,2 @@
-export * from './landmarks-summary.response';
 export * from './landmarks.response';
+export * from './landmarks-summary.response';

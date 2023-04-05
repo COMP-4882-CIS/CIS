@@ -56,28 +56,6 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty()
   totalLEAD6: number;
 
-  @ApiModelProperty()
-  LEAD0avg: number;
-
-  @ApiModelProperty()
-  LEAD1avg: number;
-
-  @ApiModelProperty()
-  LEAD2avg: number;
-
-  @ApiModelProperty()
-  LEAD3avg: number;
-
-  @ApiModelProperty()
-  LEAD4avg: number;
-
-  @ApiModelProperty()
-  LEAD5avg: number;
-
-  @ApiModelProperty()
-  LEAD6avg: number;
-
-
 
 
   @ApiModelProperty({ isArray: true, type: Landmark })
