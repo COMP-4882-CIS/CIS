@@ -15,3 +15,4 @@
 { "type": "Feature", "properties": { "age_months": "4", "sex": "M", "Ethnicity": "N", "Race": "Z", "date": "29-Sep-11", "SampleType": "V", "lead": "10", "Confirmed": "P", "county": "Shelby", "zipcode": "", "fourzip": "", "month": "9", "week": "39", "year": "2011", "age_years": "0.33333333999999998", "age": "0", "yeardummy": "0", "Latitude": 0.0, "Longitude": 0.0 }, "geometry": { "type": "Point", "coordinates": [ 0.0, 0.0 ] } }
 ]
 }
+
