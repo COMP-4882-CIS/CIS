@@ -61,8 +61,8 @@ export class LandmarksSummaryResponse {
 
   @ApiModelProperty()
   totalCOVIDCASE: number;
-
-
+  
+  
 
   @ApiModelProperty({ isArray: true, type: Landmark })
   parks: Landmark[];
