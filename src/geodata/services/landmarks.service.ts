@@ -23,6 +23,8 @@ export class LandmarksService {
   private rawLEAD4Data: FeatureCollection = require('../data/lead_data4.json');
   private rawLEAD5Data: FeatureCollection = require('../data/lead_data5.json');
   private rawLEAD6Data: FeatureCollection = require('../data/lead_data6.json');
+  private rawCOVIDVACCData:FeatureCollection = require('../data/covid-data-vacc.json');
+  private rawCOVIDCASEData:FeatureCollection = require('../data/covid-data-case.json');
 
 
   private readonly allLandmarks: Landmark[];
@@ -47,6 +49,8 @@ export class LandmarksService {
       ...this.convertLEAD4(),
       ...this.convertLEAD5(),
       ...this.convertLEAD6(),
+      ...this.convertCOVIDCASE(),
+      ...this.convertCOVIDVACC(),
     ];
   }
 
@@ -245,6 +249,28 @@ export class LandmarksService {
   public getLEAD6(inZipCode?: string): Landmark[] {
     return this.allLandmarks
       .filter((landmark) => landmark.type === LandmarkType.LEAD6)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+
+  public getCOVIDVACC(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.COVIDVACC)
+      .filter((landmark) => {
+        if (inZipCode !== undefined && inZipCode.length > 0) {
+          return landmark.zipCode === inZipCode;
+        }
+        return true;
+      });
+  }
+
+  public getCOVIDCASE(inZipCode?: string): Landmark[] {
+    return this.allLandmarks
+      .filter((landmark) => landmark.type === LandmarkType.COVIDCASE)
       .filter((landmark) => {
         if (inZipCode !== undefined && inZipCode.length > 0) {
           return landmark.zipCode === inZipCode;
@@ -639,6 +665,53 @@ export class LandmarksService {
           LandmarkType.LEAD6,
           feature.properties['age'],
           feature.properties['zipcode'],
+          feature.geometry,
+        ),
+      );
+  }
+  private convertCOVIDVACC(): Landmark[] {
+    return this.rawLEAD6Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Covid-19 Vaccination, Number of Children < 18yrs with at least one dose, as of 11\/10\/2022') &&
+          feature.properties.hasOwnProperty('Covid-19 Vaccination, Percent of Children < 18yrs with at least one dose (%), as of 11\/10\/2022') &&
+          feature.properties.hasOwnProperty('Zip') &&
+          !!feature.properties['Covid-19 Vaccination, Number of Children < 18yrs with at least one dose, as of 11\/10\/2022'] &&
+          !!feature.properties['Covid-19 Vaccination, Percent of Children < 18yrs with at least one dose (%), as of 11\/10\/2022'] &&
+          !!feature.properties['Zip']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.COVIDVACC,
+          feature.properties['Covid-19 Vaccination, Number of Children < 18yrs with at least one dose, as of 11\/10\/2022'],
+          feature.properties['Zip'],
+          feature.geometry,
+        ),
+      );
+  }
+
+  private convertCOVIDCASE(): Landmark[] {
+    return this.rawLEAD6Data.features
+      .filter((feature) => {
+        return (
+          !!feature.properties &&
+          feature.properties.hasOwnProperty('Covid-19, < 18yrs , Cumulative Case Count, 2020-2022') &&
+          feature.properties.hasOwnProperty('Covid-19, < 18yrs, Cumulative Case Rate per 100 persons, 2020-2022') &&
+          feature.properties.hasOwnProperty('Zip') &&
+          !!feature.properties['Covid-19, < 18yrs , Cumulative Case Count, 2020-2022'] &&
+          !!feature.properties['Covid-19, < 18yrs, Cumulative Case Rate per 100 persons, 2020-2022'] &&
+          !!feature.properties['Zip']
+        );
+      })
+      .map(
+        (feature) =>
+        new Landmark(
+          LandmarkType.COVIDCASE,
+          feature.properties['Covid-19, < 18yrs , Cumulative Case Count, 2020-2022'],
+          feature.properties['Zip'],
           feature.geometry,
         ),
       );

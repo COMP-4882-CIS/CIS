@@ -56,6 +56,13 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty()
   totalLEAD6: number;
 
+  @ApiModelProperty()
+  totalCOVIDVACC: number;
+
+  @ApiModelProperty()
+  totalCOVIDCASE: number;
+  
+  
 
   @ApiModelProperty({ isArray: true, type: Landmark })
   parks: Landmark[];
@@ -106,6 +113,12 @@ export class LandmarksSummaryResponse {
   @ApiModelProperty({ isArray: true, type: Landmark })
   lead6: Landmark[];
 
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  covidvacc: Landmark[];
+
+  @ApiModelProperty({ isArray: true, type: Landmark })
+  covidcase: Landmark[];
+
 
   constructor(
     parks: Landmark[],
@@ -126,6 +139,8 @@ export class LandmarksSummaryResponse {
     lead4: Landmark[],
     lead5: Landmark[],
     lead6: Landmark[],
+    covidvacc: Landmark[],
+    covidcase: Landmark[],
   ) {
     this.totalParks = parks.length;
     this.parks = parks;
@@ -180,6 +195,12 @@ export class LandmarksSummaryResponse {
 
     this.totalLEAD6 = lead6.length;
     this.lead6 = lead6;
+
+    this.totalCOVIDVACC = covidvacc.length;
+    this.covidvacc= covidvacc;
+
+    this.totalCOVIDCASE = covidcase.length;
+    this.covidcase = covidcase;
 
     
     
