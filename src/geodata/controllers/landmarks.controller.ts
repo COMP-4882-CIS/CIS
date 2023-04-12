@@ -33,7 +33,9 @@ export class LandmarksController {
     const lead4 = this.landmarksService.getLEAD4(zipCode);
     const lead5 = this.landmarksService.getLEAD5(zipCode);
     const lead6 = this.landmarksService.getLEAD6(zipCode);
-
+    const covidvacc= this.landmarksService.getCOVIDVACC(zipCode);
+    const covidcase= this.landmarksService.getCOVIDCASE(zipCode);
+;
     return new LandmarksSummaryResponse(
       parks,
       communityCenters,
@@ -52,7 +54,9 @@ export class LandmarksController {
       lead3,
       lead4,
       lead5,
-      lead6,);
+      lead6,
+      covidvacc,
+      covidcase,);
   }
 
   @Get('parks')
@@ -192,6 +196,24 @@ export class LandmarksController {
 
     return new LandmarksResponse(lead6);
   }
+
+  @Get('covid-data-vacc')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCOVIDVACC(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const covidvacc= this.landmarksService.getCOVIDVACC(zipCode);
+
+    return new LandmarksResponse(covidvacc);
+  }
+
+  @Get('covid-data-case')
+  @ApiQuery({ type: String, required: false, name: 'zipCode' })
+  getCOVIDCASE(@Query('zipCode') zipCode?: string): LandmarksResponse {
+    const covidcase= this.landmarksService.getCOVIDCASE(zipCode);
+
+    return new LandmarksResponse(covidcase);
+  }
+
+
 
 
 
