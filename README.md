@@ -30,6 +30,8 @@ To build the server, please run `npm run build`. The resulting files will be ava
 ## Deploying
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/COMP-4882-CIS/CIS)
+You can deploy from the main branch. 
+Do NOT change the contents of package.json.
 
 
 ## Notes
