@@ -1,0 +1,76 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build outputs
+dist
+coverage
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+!README.md
+
+# Test files
+test
+*.spec.ts
+*.test.ts
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Temporary folders
+tmp
+temp
+
+# Docker files themselves
+Dockerfile*
+.dockerignore
+
+# Test scripts and results
+*-test.sh
+docker-compose-test.sh
+performance-test.sh
+api-test.sh
+test-results
+build-info
+api-test-results.txt
+performance_results.csv
+resource_usage.csv
+*_results.txt
+*.tsv
+
+# Docker files (except main Dockerfile)
+Dockerfile.test
+docker-compose.yml
+.env.docker

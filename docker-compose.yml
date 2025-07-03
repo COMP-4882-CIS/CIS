@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Main application service
+  cis-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: iisdevs/cis-backend:main
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - REDIS_URL=redis://redis:6379
+      - CENSUS_API_KEY=${CENSUS_API_KEY:-your_census_api_key_here}
+      - API_KEY=${API_KEY:-your_mem_datahub_api_key_here}
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - cis-network
+
+  # Redis cache service
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - cis-network
+
+  # Test service for running integration tests
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - cis-backend
+    environment:
+      - BASE_URL=http://cis-backend:3000
+    volumes:
+      - ./test-results:/app/test-results
+    networks:
+      - cis-network
+    profiles:
+      - test
+
+volumes:
+  redis_data:
+
+networks:
+  cis-network:
+    driver: bridge

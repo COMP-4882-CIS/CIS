@@ -1,0 +1,21 @@
+# Test Dockerfile for running integration tests
+FROM node:18-alpine
+
+# Install curl for API testing
+RUN apk add --no-cache curl bash
+
+# Set working directory
+WORKDIR /app
+
+# Copy test scripts
+COPY api-test.sh ./
+COPY package*.json ./
+
+# Make scripts executable
+RUN chmod +x api-test.sh
+
+# Create test results directory
+RUN mkdir -p test-results
+
+# Default command runs the API tests
+CMD ["./api-test.sh"]
